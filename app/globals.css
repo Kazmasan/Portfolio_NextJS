@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@keyframes fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes soft-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+}
+
+@keyframes gradient-shift {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+@layer utilities {
+	.animate-fade-up {
+		animation: fade-up 0.7s ease-out both;
+	}
+
+	.animate-fade-up-delay-1 {
+		animation: fade-up 0.7s ease-out 0.12s both;
+	}
+
+	.animate-fade-up-delay-2 {
+		animation: fade-up 0.7s ease-out 0.22s both;
+	}
+
+	.animate-soft-float {
+		animation: soft-float 5s ease-in-out infinite;
+	}
+
+	.interactive-card {
+		@apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl;
+	}
+
+	.interactive-surface {
+		@apply transition-all duration-300 ease-out hover:shadow-lg hover:scale-[1.01];
+	}
+
+	.gradient-fade-hover {
+		background-size: 200% 200%;
+		animation: gradient-shift 4s linear infinite alternate;
+	}
+
+	.text-shift-hover {
+		@apply transition-colors duration-300;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-fade-up,
+	.animate-fade-up-delay-1,
+	.animate-fade-up-delay-2,
+	.animate-soft-float,
+	.gradient-fade-hover,
+	.interactive-card,
+	.interactive-surface {
+		animation: none !important;
+		transition: none !important;
+		transform: none !important;
+	}
+}
