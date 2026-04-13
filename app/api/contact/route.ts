@@ -8,10 +8,53 @@ type ContactBody = {
   email?: string;
   subject?: string;
   message?: string;
+  turnstileToken?: string;
+};
+
+type TurnstileVerifyResponse = {
+  success: boolean;
+  'error-codes'?: string[];
 };
 
 const isValidEmail = (email: string) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const verifyTurnstile = async (token: string, remoteIp?: string) => {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+
+  if (!secretKey) {
+    return { ok: false as const, reason: 'missing-secret' };
+  }
+
+  const formData = new URLSearchParams();
+  formData.append('secret', secretKey);
+  formData.append('response', token);
+
+  if (remoteIp) {
+    formData.append('remoteip', remoteIp);
+  }
+
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: formData.toString(),
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    return { ok: false as const, reason: 'request-failed' };
+  }
+
+  const result = (await response.json()) as TurnstileVerifyResponse;
+
+  if (!result.success) {
+    return { ok: false as const, reason: 'verification-failed', codes: result['error-codes'] ?? [] };
+  }
+
+  return { ok: true as const };
 };
 
 export async function POST(request: Request) {
@@ -21,6 +64,14 @@ export async function POST(request: Request) {
     const email = body.email?.trim() ?? '';
     const subject = body.subject?.trim() ?? '';
     const message = body.message?.trim() ?? '';
+    const turnstileToken = body.turnstileToken?.trim() ?? '';
+
+    if (!turnstileToken) {
+      return NextResponse.json(
+        { error: 'Validation anti-spam manquante.' },
+        { status: 400 }
+      );
+    }
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
@@ -32,6 +83,24 @@ export async function POST(request: Request) {
     if (!isValidEmail(email)) {
       return NextResponse.json(
         { error: "L'adresse email est invalide." },
+        { status: 400 }
+      );
+    }
+
+    const forwardedFor = request.headers.get('x-forwarded-for') ?? '';
+    const remoteIp = forwardedFor.split(',')[0]?.trim();
+    const turnstileResult = await verifyTurnstile(turnstileToken, remoteIp || undefined);
+
+    if (!turnstileResult.ok) {
+      if (turnstileResult.reason === 'missing-secret') {
+        return NextResponse.json(
+          { error: 'Configuration captcha manquante.' },
+          { status: 500 }
+        );
+      }
+
+      return NextResponse.json(
+        { error: 'Echec de la verification anti-spam. Merci de reessayer.' },
         { status: 400 }
       );
     }

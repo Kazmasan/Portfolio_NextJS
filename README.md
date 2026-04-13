@@ -8,7 +8,7 @@ Personal portfolio website built with Next.js (App Router), TypeScript, Tailwind
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Run Locally](#run-locally)
-- [SMTP Configuration (.env)](#smtp-configuration-env)
+- [SMTP and Turnstile Configuration (.env)](#smtp-and-turnstile-configuration-env)
 - [Content Customization](#content-customization)
 - [How to Replace Profile Image and Resume](#how-to-replace-profile-image-and-resume)
 - [Available Scripts](#available-scripts)
@@ -50,7 +50,7 @@ Open:
 
 - http://localhost:3000
 
-## SMTP Configuration (.env)
+## SMTP and Turnstile Configuration (.env)
 
 The contact endpoint in `app/api/contact/route.ts` uses environment variables.
 
@@ -62,13 +62,23 @@ SMTP_PASS=your-password
 SMTP_HOST=your-smtp-host
 SMTP_PORT=465
 SMTP_SECURE=true
+
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=your-turnstile-site-key
+TURNSTILE_SECRET_KEY=your-turnstile-secret-key
 ```
 
 Notes:
 
 - `SMTP_USER` and `SMTP_PASS` are required.
 - `SMTP_HOST`, `SMTP_PORT`, and `SMTP_SECURE` have defaults in code.
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` are required to enable Cloudflare human verification.
 - Never commit your `.env` file.
+
+Turnstile setup:
+
+1. Create a widget in Cloudflare Turnstile dashboard.
+2. Add your local/production domains to the widget configuration.
+3. Copy the site key and secret key into the `.env` variables above.
 
 ## Content Customization
 
