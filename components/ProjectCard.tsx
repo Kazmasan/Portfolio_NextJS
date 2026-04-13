@@ -32,9 +32,12 @@ export default function ProjectCard({ project }: { project: any }) {
             <GraduationCap size={24} className={palette.iconColor} />
           )}
         </div>
-        <span className="text-sm text-slate-500 dark:text-gray-400 font-mono">
-          {project.date}
-        </span>
+        <div className="text-right">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-gray-400">ID {project.id}</p>
+          <span className="text-sm text-slate-500 dark:text-gray-400 font-mono">
+            {project.date}
+          </span>
+        </div>
       </div>
       
       <h3 className={`text-xl font-bold mb-2 text-slate-900 dark:text-white transition-colors duration-300 ${palette.titleHover}`}>

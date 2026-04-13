@@ -19,10 +19,13 @@ export const skills = {
     {
       title: "IA & LLM",
       items: [
-        "LLM locaux",
+        "Ollama",
         "RASA",
         "Python",
-        "Next.js (intégration front IA)",
+        "huggingface",
+        "Transformers",
+        "LangChain",
+
       ],
     },
     {
@@ -74,30 +77,33 @@ export const skills = {
     {
       title: "Données",
       items: [
-        "Bases de données SQL",
-        "Bases de données NoSQL",
+        "Mysql",
+        "SQLlite",        
         "MariaDB",
         "MongoDB",
-        "PhpMyAdmin",
+        "PostgreSQL",
       ],
     },
     {
       title: "Infra, Réseau & Outils",
       items: [
-        "Serveur Linux",
+        "Linux",
         "Docker",
         "Cisco Networking",
         "Architecture réseau",
-        "Jira",
+        "Proxmox",
+        "Gns3",
+        
+
       ],
     },
   ],
   technicalHighlights: [
     "Expérience en environnement SOC (monitoring, investigation, amélioration de la détection)",
     "Conception et intégration d'outils cyber (Wazuh, MISP, OpenCTI)",
-    "Développement d'applications web et d'API orientées usage métier",
+    "Développement d'applications web et d'API",
     "Conception de projets embarqués (Arduino/Raspberry Pi) avec capteurs et affichage temps réel",
-    "Polyvalence code bas niveau / web / data (C, C++, .NET, JavaScript, Python)",
+    "Polyvalence code tout niveau / web / data (C, C++, .NET, JavaScript, Python)",
     "Mise en place d'environnements Linux, réseau et conteneurisés",
   ],
   softCategories: [
@@ -105,16 +111,16 @@ export const skills = {
       title: "Collaboration & Communication",
       items: [
         "Travail d'équipe",
-        "Communication claire avec profils techniques et non techniques",
+        "Communication claire",
         "Transmission et vulgarisation de sujets complexes",
       ],
     },
     {
       title: "Méthode & Projet",
       items: [
-        "Gestion de projet",
         "Gestion de projet agile",
         "Organisation, priorisation et suivi des tâches",
+        "Jira",
       ],
     },
     {
@@ -123,7 +129,7 @@ export const skills = {
         "Autonomie",
         "Rigueur analytique",
         "Résolution de problèmes",
-        "Adaptabilité rapide à de nouveaux outils",
+        "Adaptabilité rapide",
         "Anglais professionnel",
       ],
     },
@@ -135,15 +141,15 @@ export const skills = {
   ],
 };
 
-export const projects = [
+export const project = [
   {
     id: 1,
-    title: "ChatBot IA - Projet Européen RES-Q+",
-    organization: "Université de Aalborg (Danemark)", // [cite: 39]
-    date: "Sept 2025 - Jan 2026", // [cite: 39]
-    type: "company", // Pour l'icône "Valise"
-    description: "Mise en place d'un ChatBot utilisant des modèles d'IA développés en interne.", // [cite: 41]
-    tools: ["RASA", "Ollama", "Python", "NextJS"] // [cite: 40]
+    title: "Outils de gestion internes",
+    organization: "EFF'INNOV Technologies", // [cite: 48]
+    date: "Avril 2024 - Juil 2024", // [cite: 47]
+    type: "company",
+    description: "Développement de plusieurs outils internes à l’entreprise pour la gestion des ressources humaines et des composants.", // [cite: 50]
+    tools: ["NextJS", "MariaDB", "MongoDB"] // [cite: 49]
   },
   {
     id: 2,
@@ -154,58 +160,62 @@ export const projects = [
     description: "Intégration MISP/OpenCTI/Wazuh, analyse de logs en environnement SOC, corrélation d'événements, qualification d'alertes et traitement d'IoCs pour améliorer la détection de menaces.",
     tools: ["Linux", "Docker", "Proxmox", "Wazuh", "MISP", "OpenCTI"]
   },
-  {
+
+    {
     id: 3,
-    title: "Outils de gestion internes",
-    organization: "EFF'INNOV Technologies", // [cite: 48]
-    date: "Avril 2024 - Juil 2024", // [cite: 47]
-    type: "company",
-    description: "Développement d'outils pour la gestion et le suivi de bases de données.", // [cite: 50]
-    tools: ["NextJS", "MariaDB", "MongoDB"] // [cite: 49]
+    title: "ChatBot IA - Projet Européen RES-Q+",
+    organization: "Université de Aalborg (Danemark)", // [cite: 39]
+    date: "Sept 2025 - Jan 2026", // [cite: 39]
+    type: "company", // Pour l'icône "Valise"
+    description: "Mise en place d’un ChatBot utilisant des modèles d’IA développés en interne dans le cadre du projet européen RES-Q+", // [cite: 41]
+    tools: ["RASA", "Ollama", "Hugging Face", "Python", "NextJS"] // [cite: 40]
   },
+];
+
+export const school_project = [
   {
-    id: 4,
+    id: 1,
     title: "Projet Réseau d'Entreprise",
     organization: "CESI (Projet École)", // [cite: 51]
     date: "2024", // [cite: 52]
     type: "school", // Pour l'icône "Chapeau"
-    description: "Mise en place de l'inter-réseau de plusieurs entreprises et connexion au FAI.", // [cite: 54]
+    description: "Mise en place du réseau de plusieurs entreprises et connexion au FAI.", // [cite: 54]
     tools: ["Cisco Packet Tracer"] // [cite: 53]
   },
   {
-    id: 5,
-    title: "Site Web & Base de données",
+    id: 2,
+    title: "Projet STAGE",
     organization: "CESI (Projet École)",
     date: "2025",
     type: "school",
-    description: "Création d'un site web avec base de données et interface de gestion.", // [cite: 55]
+    description: "Mise en place d'un site web de recherche de stage multi-compte permettant de faciliter la recherche et la candidature.", // [cite: 55]
     tools: ["HTML5/CSS3", "JS", "MySQL", "PHP"] // [cite: 55]
   },
   {
-    id: 6,
+    id: 3,
     title: "Application Gestion d'Entreprise",
     organization: "CESI (Projet École)",
     date: "2025",
     type: "school",
-    description: "Application de gestion clients, commandes et employés.", // [cite: 58, 59]
-    tools: [".NET", "C++", "C", "SQL Server"] // [cite: 57]
+    description: "Outils de gestion pour les différents aspects d’une entreprise, gestion clients, commandes, employés", // [cite: 58, 59]
+    tools: [".NET", "C++", "SQL Server"] // [cite: 57]
   },
   {
-    id: 7,
+    id: 4,
     title: "Station météo embarquée",
     organization: "CESI (Projet École)",
     date: "2025",
     type: "school",
     description: "Conception d'une station C++ avec monitoring temps réel de température, pression et position GPS.",
-    tools: ["C++", "Arduino", "Capteurs", "GPS", "Temps réel"]
+    tools: ["C-Arduino", "Arduino", "Capteurs", "GPS", "Temps réel"]
   },
   {
-    id: 8,
-    title: "Affichage QR Edusign sur écran Arduino",
+    id: 5,
+    title: "Affichage déporté QR code Edusign ",
     organization: "CESI (Projet École)",
     date: "2026",
     type: "school",
-    description: "Pipeline automatique de récupération du QR Edusign et affichage en salle via Arduino, Google API et serveur Raspberry Pi.",
-    tools: ["Arduino", "Raspberry Pi", "Google API", "QR code", "Python"]
+    description: "Pipeline automatique de récupération du QR Edusign et affichage en salle via Arduino, extension Google et serveur Raspberry Pi.",
+    tools: ["Arduino", "Raspberry Pi", "Extension Google", "QR code", "Python"]
   }
 ];
